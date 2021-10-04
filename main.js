@@ -1,7 +1,12 @@
-var menu = document.getElementById('game-container').children[0];
-menu.innerHTML = menu.innerHTML + '| <span id="footer_switch" title="on/off footer" style="color: blue; text-decoration: underline; cursor: pointer;">Footer (on)</span>';
+function createFooterSwitch() {
+	var button = document.createElement('span');
+	button.id = 'footer_switch';
+	button.title = 'on/off footer';
+	button.style = 'color: blue; text-decoration: underline; cursor: pointer;';
+	return button;
+}
 
-let footer_switch = document.getElementById('footer_switch');
+var footer_switch = createFooterSwitch();
 let footer = document.getElementById('footer');
 let scores = document.getElementById('scores-container');
 var footer_hidden = false;
@@ -18,6 +23,12 @@ function hideFooter() {
 	}
 	footer_hidden = !footer_hidden;
 }
+
+
+
+var menu = document.getElementById('game-container').children[0];
+menu.appendChild(document.createTextNode(' | '));
+menu.appendChild(footer_switch);
 
 footer_switch.addEventListener('click', hideFooter, false);
 
